@@ -6,7 +6,7 @@ pipeline {
         GIT_REPO = "https://github.com/Meghana0976/AWS-EC2-Docker-CICD"
         GIT_BRANCH = "main"
         EC2_USER = "ubuntu"
-        EC2_IP = "3.87.57.12"
+        EC2_IP = "44.204.194.80"
         // Remove the direct path to the PEM key and use Jenkins credentials
         SSH_KEY = "ocker-cicd-ssh-key" // Reference to Jenkins Secret File (SSH key)
     }
@@ -45,7 +45,7 @@ pipeline {
                     script {
                         // Ensure you're using the correct user for EC2 (ubuntu for Ubuntu-based EC2)
                         sh "ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} 'sudo docker rm -f react 2>/dev/null || true'"
-                        sh "ssh ubuntu@${EC2_IP} 'sudo docker run -d -p 3000:3000 --name final-deploy-container ${IMAGE_NAME}:${IMAGE_TAG}'"
+                        sh "ssh ubuntu@${EC2_IP} 'sudo docker run -d -p 3000:80 --name final-deploy-container ${IMAGE_NAME}:${IMAGE_TAG}'"
                     }
                 }
             }
